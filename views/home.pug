@@ -1,0 +1,213 @@
+doctype html
+head
+  meta(charset='utf-8')
+  title Day Planner
+  meta(content='width=device-width, initial-scale=1.0' name='viewport')
+  meta(content='' name='keywords')
+  meta(content='' name='description')
+  // Favicons
+  link(href='img/favicon.png' rel='icon')
+  link(href='img/apple-touch-icon.png' rel='apple-touch-icon')
+  // Google Fonts
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800|Montserrat:300,400,700' rel='stylesheet')
+  // Bootstrap CSS File
+  link(href='lib/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+  // Libraries CSS Files
+  link(href='lib/font-awesome/css/font-awesome.min.css' rel='stylesheet')
+  link(href='lib/animate/animate.min.css' rel='stylesheet')
+  link(href='lib/ionicons/css/ionicons.min.css' rel='stylesheet')
+  link(href='lib/owlcarousel/assets/owl.carousel.min.css' rel='stylesheet')
+  link(href='lib/magnific-popup/magnific-popup.css' rel='stylesheet')
+  link(href='lib/ionicons/css/ionicons.min.css' rel='stylesheet')
+  link(rel='stylesheet' type='text/css' href='https://uicdn.toast.com/tui-calendar/latest/tui-calendar.css')
+  // If you use the default popups, use this.
+  link(rel='stylesheet' type='text/css' href='https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css')
+  link(rel='stylesheet' type='text/css' href='https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css')
+
+  // Main Stylesheet File
+  link(href='css/style.css' rel='stylesheet')
+  //
+    =======================================================
+    Theme Name: Reveal
+    Theme URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
+    Author: BootstrapMade.com
+    License: https://bootstrapmade.com/license/
+    =======================================================
+//
+  ==========================
+  Header
+  ============================
+header#header
+  .container
+    #logo.pull-left
+      h1
+        a(href='home')
+          | Day
+          span Planner
+    nav#nav-menu-container
+      ul.nav-menu
+        li.menu-active
+          a(href='home') Home
+        li.menu-has-children
+          a(href='') Add
+          ul
+            li
+              a(href='add_category') Add Category
+            li
+              a(href='add_item') Add Item
+        li.menu-has-children
+          a(href='') More
+          ul
+            li
+              a(href='categories') My Categories
+        li
+          a(href='logout') Logout
+    // #nav-menu-container
+// #header
+main#main
+//
+  ==========================
+  Intro Section
+  ============================
+section#intro
+  .intro-content
+    h2 Hello #{name.first_name}
+  #intro-carousel.owl-carousel
+    .item(style="background-image: url('img/intro-carousel/1.jpg');")
+    .item(style="background-image: url('img/intro-carousel/2.jpg');")
+    .item(style="background-image: url('img/intro-carousel/3.jpg');")
+    .item(style="background-image: url('img/intro-carousel/4.jpg');")
+    .item(style="background-image: url('img/intro-carousel/5.jpg');")
+// #intro
+main#main
+  //
+    ==========================
+    About Section
+    ============================
+  section#about.wow.fadeInUp
+    input#data(type="hidden" value=JSON.stringify(data))
+    .container
+      .row
+        .col-lg-4
+          img(src='img/cat.jpeg' alt='')
+        .col-lg-8.content
+          h2 Today&apos;s Agenda
+          div.container
+            p
+              | Select a category: 
+              select#table-filter.table-filter
+                option(value='') All
+                for item in cats
+                  option(value=item.name) #{item.name}
+            form(action="/home", method="post")
+              table#table_id.table
+                thead
+                  tr
+                    th Item
+                    th Category
+                    th Done
+                tbody
+                  for item in data
+                    tr
+                      td #{item.goal_name}
+                      td #{item.name}
+                      td(align = "center")
+                        input#done.form-check-input(type='checkbox' name='done' value=item.goal_id )
+              button.btn.btn-primary(type='submit') Done
+    br
+    br
+    br
+    br
+    .container
+      h2 My Calendar
+      #calendar
+
+  // #about
+//
+  ==========================
+  Footer
+  ============================
+footer#footer
+  .container
+    .copyright
+      | &copy; Copyright 
+      strong Reveal
+      | . All Rights Reserved
+    .credits
+      //
+        All the links in the footer should remain intact.
+        You can delete the links only if you purchased the pro version.
+        Licensing information: https://bootstrapmade.com/license/
+        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Reveal
+      | Designed by 
+      a(href='https://bootstrapmade.com/') BootstrapMade
+// #footer
+a.back-to-top(href='#')
+  i.fa.fa-chevron-up
+// JavaScript Libraries
+script(src='lib/jquery/jquery.min.js')
+script(src='lib/jquery/jquery-migrate.min.js')
+script(src='lib/bootstrap/js/bootstrap.bundle.min.js')
+script(src='lib/easing/easing.min.js')
+script(src='lib/superfish/hoverIntent.js')
+script(src='lib/superfish/superfish.min.js')
+script(src='lib/wow/wow.min.js')
+script(src='lib/owlcarousel/owl.carousel.min.js')
+script(src='lib/magnific-popup/magnific-popup.min.js')
+script(src='lib/sticky/sticky.js')
+// Contact Form JavaScript File
+script(src='contactform/contactform.js')
+// Template Main Javascript File
+script(src='js/main.js')
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js')
+script(type='text/javascript' src='https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js')
+script.
+  function filterGlobal () {
+    var option = document.getElementById("table-filter");
+    $('#table_id').DataTable().search(
+        option.value
+    ).draw();
+  }
+
+  function filterColumn () {
+    var option = document.getElementById("table-filter");
+    $('#table_id').DataTable().column( 1 ).search(
+        option.value
+    ).draw();
+  }
+
+  $(document).ready(function() {
+      $('#table_id').DataTable();
+      
+      $('select.table-filter').on( 'change', function () {
+          filterColumn();
+      } );
+  } );
+
+script(src='https://uicdn.toast.com/tui.code-snippet/latest/tui-code-snippet.js')
+script(src='https://uicdn.toast.com/tui.dom/v3.0.0/tui-dom.js')
+script(src='https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.min.js')
+script(src='https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.min.js')
+script(src='https://uicdn.toast.com/tui-calendar/latest/tui-calendar.js')
+
+
+script.code-js(type='text/javascript').
+  var goal_array = JSON.parse(document.getElementById("data").value);
+  var cal = new tui.Calendar('#calendar', {
+    defaultView: 'month', // set 'month'
+    month: {
+      visibleWeeksCount: 2 // visible week count in monthly
+    }
+  });
+  for (var i=0; i < goal_array.length; i++) {
+    cal.createSchedules([
+        {
+          calendarId: '1',
+          title: goal_array[i].goal_name,
+          category: 'time',
+          dueDateClass: '',
+          start: goal_array[i].due_date,
+        },
+    ]);
+  }  
+
