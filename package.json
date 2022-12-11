@@ -12,7 +12,7 @@
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
     "ejs": "^2.5.7",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "express-session": "^1.17.0",
     "googleapis": "^39.2.0",
     "jade": "^1.11.0",
